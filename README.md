@@ -1,4 +1,6 @@
-# teste-pratico
+# Projeto de teste - Dinherow
+
+![Print do projeto](./src/assets/dinherow.png)
 
 ## Project setup
 ```
