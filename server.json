@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "title": "Tênis Nike Runallday 2 Masculino - Preto e Branco",
+      "image": "https://static.netshoes.com.br/produtos/tenis-nike-runallday-2-masculino/26/HZM-3026-026/HZM-3026-026_zoom2.jpg?ts=1579114182&ims=326x",
+      "description": "Aposte em amortecimento responsivo e respirabilidade sem perder a estabilidade. Para isso, conte com o Tênis Nike Runallday Masculino que ainda conta com excelente tração em diferentes superfícies.",
+      "value": 125.90,
+      "freteGratis": true
+    },
+    {
+      "id": "2",
+      "title": "Tênis Nike Revolution 5 Masculino - Preto e Vermelho",
+      "image": "https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/02/HZM-1731-002/HZM-1731-002_zoom2.jpg?ts=1574882192&ims=326x",
+      "description": "Com ótimo amortecimento em espuma, o Tênis Nike Masculino Revolution 5 é ideal para os corredores que buscam leveza e conforto. Confeccionado em material respirável, esse tênis para correr possui reforço.",
+      "value": 138.90,
+      "freteGratis": false
+    },
+    {
+      "id": "3",
+      "title": "Tênis Nike Revolution 5 Masculino - Azul e Cinza",
+      "image": "https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/70/HZM-1731-270/HZM-1731-270_zoom2.jpg?ts=1573579328&ims=326x",
+      "description": "Com ótimo amortecimento em espuma, o Tênis Nike Masculino Revolution 5 é ideal para os corredores que buscam leveza e conforto. Confeccionado em material respirável, esse tênis para correr possui reforço.",
+      "value": 190.90,
+      "freteGratis": false
+    }
+  ]
+}
