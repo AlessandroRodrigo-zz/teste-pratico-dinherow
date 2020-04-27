@@ -2,15 +2,17 @@
   <div class="fill-height d-flex">
     <v-col cols="4" class="pa-0 d-flex flex-column justify-center align-center">
       <img src="../assets/ansible.svg" width="15%" alt="" />
-      <v-form class="width70 mt-5">
-        <v-text-field label="E-mail" />
+      <v-form @submit="handleSubmit" class="width70 mt-5">
+        <v-text-field type="email" label="E-mail" />
         <v-text-field
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           :type="showPassword ? 'text' : 'password'"
           label="Password"
           @click:append="showPassword = !showPassword"
         ></v-text-field>
-        <v-btn color="primary" large class="width100" depressed>Logar</v-btn>
+        <v-btn color="primary" type="submit" large class="width100" depressed
+          >Logar</v-btn
+        >
       </v-form>
     </v-col>
     <v-col class="pa-0 imgLeft" />
@@ -23,6 +25,11 @@ export default {
     return {
       showPassword: false,
     };
+  },
+  methods: {
+    handleSubmit() {
+      this.$router.push('/home');
+    },
   },
 };
 </script>
