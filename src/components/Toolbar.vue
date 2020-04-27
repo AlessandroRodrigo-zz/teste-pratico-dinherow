@@ -10,6 +10,9 @@
         <img src="../assets/ansible.svg" width="8%" alt="Logo" class="mr-5" />
       </router-link>
       <div class="d-flex ml-auto align-baseline">
+        <v-btn to="/new/product" class="mr-5" text color="primary"
+          >Cadastrar novo produto</v-btn
+        >
         <router-link to="/cart">
           <v-badge
             color="primary"
