@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$router.push('/home');
+      this.$router.push({ name: 'home' });
     },
   },
 };
