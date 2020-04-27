@@ -19,6 +19,10 @@
           {{ product.description }}
         </v-card-text>
 
+        <v-card-title class="text-- mb-auto">
+          {{ product.value | currency }}
+        </v-card-title>
+
         <v-card-actions class="flex-column pa-3 mt-auto">
           <v-btn
             depressed
@@ -43,6 +47,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import api from '../services/api';
+import currency from '../services/filter';
 
 export default {
   data() {
@@ -53,6 +58,9 @@ export default {
   },
   computed: {
     ...mapGetters(['productsInCart']),
+  },
+  filters: {
+    currency,
   },
   methods: {
     ...mapActions(['ADD_PRODUCT_IN_CART']),

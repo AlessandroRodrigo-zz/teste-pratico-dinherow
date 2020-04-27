@@ -81,6 +81,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import Toolbar from '../components/Toolbar.vue';
+import currency from '../services/filter';
 
 export default {
   data() {
@@ -105,12 +106,7 @@ export default {
     },
   },
   filters: {
-    currency(value) {
-      return new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-      }).format(value);
-    },
+    currency,
   },
   methods: {
     ...mapActions([
