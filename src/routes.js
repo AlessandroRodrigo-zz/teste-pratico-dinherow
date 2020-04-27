@@ -1,8 +1,8 @@
-import VueRouter from 'vue-router'
-import Vue from 'vue'
+import VueRouter from 'vue-router';
+import Vue from 'vue';
 
-import Home from './pages/Home.vue'
-import Login from './pages/Login.vue'
+import Home from './pages/Home.vue';
+import Login from './pages/Login.vue';
 
 Vue.use(VueRouter);
 
@@ -10,16 +10,16 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
-      component: Home
+      component: Home,
     },
     {
       path: '/login',
       name: 'login',
-      component: Login
-    }
-  ]
-})
+      component: Login,
+    },
+  ],
+});
 
-export default router
+export default router;
