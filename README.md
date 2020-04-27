@@ -2,25 +2,21 @@
 
 ![Print do projeto](./src/assets/dinherow.png)
 
-## Project setup
+### 1 - Instalar as dependências
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### 2 - Iniciar a fake api com o json-server
+```
+json-server server.json -p 3333
+```
+
+### 3 - Iniciar o projeto
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
