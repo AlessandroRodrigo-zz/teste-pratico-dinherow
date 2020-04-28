@@ -44,8 +44,8 @@
         </v-card-text>
       </v-card>
     </v-layout>
-    <v-snackbar color="green" v-model="snackbar">
-      Produto cadastrado com sucesso!
+    <v-snackbar :color="colorSnackbar" v-model="snackbar">
+      {{ textSnackbar }}
       <v-btn color="white" text @click="snackbar = false">
         Fechar
       </v-btn>
@@ -55,6 +55,7 @@
 
 <script>
 import Toolbar from '../components/Toolbar.vue';
+import api from '../services/api';
 
 export default {
   components: {
@@ -62,12 +63,24 @@ export default {
   },
   data: () => ({
     snackbar: false,
+    textSnackbar: '',
+    colorSnackbar: 'green',
     newProduct: {},
   }),
   methods: {
     cadastrarNovoProduto() {
-      this.snackbar = true;
-      this.newProduct = {};
+      api
+        .post('https://jsonplaceholder.typicode.com/posts', this.newProduct)
+        .then(() => {
+          this.textSnackbar = 'Produto cadastrado com sucesso!';
+          this.snackbar = true;
+          this.newProduct = {};
+        })
+        .catch(() => {
+          this.textSnackbar = 'Houve um problema ao cadastrar o produto!';
+          this.colorSnackbar = 'red';
+          this.snackbar = true;
+        });
     },
   },
 };
