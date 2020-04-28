@@ -5,8 +5,8 @@
     class="justify-start align-start mt-10 mx-auto"
     style="max-width: 1400px;"
   >
-    <v-flex v-for="product in products" :key="product.id" xs10 md4>
-      <v-card outlined max-width="400" height="100%" class="ma-3 pa-0">
+    <v-flex v-for="product in filteredProducts" :key="product.id" xs10 md4>
+      <v-card outlined height="100%" class="ma-3 pa-0">
         <v-img
           class="white--text align-end"
           height="200px"
@@ -35,6 +35,9 @@
         </v-card-actions>
       </v-card>
     </v-flex>
+    <div v-if="filteredProducts.length <= 0">
+      <h3>Nenhum resultado</h3>
+    </div>
     <v-snackbar color="green" v-model="snackbar">
       Produto adicionado com sucesso
       <v-btn color="white" text @click="snackbar = false">
@@ -50,11 +53,29 @@ import api from '../services/api';
 import currency from '../services/filter';
 
 export default {
+  props: {
+    textSearch: {
+      type: String,
+      default: null,
+    },
+  },
   data() {
     return {
       products: [],
+      filteredProducts: [],
       snackbar: false,
     };
+  },
+  watch: {
+    textSearch() {
+      if (this.textSearch) {
+        this.filteredProducts = this.products.filter((item) =>
+          item.title.toLowerCase().includes(this.textSearch)
+        );
+      } else {
+        this.filteredProducts = this.products;
+      }
+    },
   },
   computed: {
     ...mapGetters(['productsInCart']),
@@ -71,6 +92,7 @@ export default {
         ...item,
         amount: 1,
       }));
+      this.filteredProducts = this.products;
     },
     handleAddProduct(product) {
       this.ADD_PRODUCT_IN_CART(product);

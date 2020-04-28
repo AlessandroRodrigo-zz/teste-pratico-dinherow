@@ -16,19 +16,17 @@
         <router-link to="/cart">
           <v-badge
             color="primary"
+            class="mr-10"
             :content="productsInCart.length ? productsInCart.length : '0'"
           >
             <v-icon class="cursorPointer">mdi-cart</v-icon>
           </v-badge>
         </router-link>
-        <div class="d-flex align-baseline mx-5 cursorPointer">
-          <v-icon class="mr-2">mdi-account</v-icon>
-          <p>Olá, fulano</p>
-        </div>
         <v-text-field
           type="text"
-          clearable
           label="Pesquisar..."
+          v-model="textSearch"
+          @change="handleSearch"
           append-icon="mdi-magnify"
           style="max-width: 300px;"
         />
@@ -43,6 +41,14 @@ import { mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapGetters(['productsInCart']),
+  },
+  data: () => ({
+    textSearch: '',
+  }),
+  methods: {
+    handleSearch() {
+      this.$emit('handleSearch', this.textSearch);
+    },
   },
 };
 </script>
