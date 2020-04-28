@@ -1,9 +1,9 @@
 <template>
   <div class="d-flex flex-column justify-center">
-    <toolbar />
+    <toolbar @handleSearch="handleSearch" />
     <banner />
     <promotion />
-    <product />
+    <product :textSearch="textSearch" />
   </div>
 </template>
 
@@ -19,6 +19,14 @@ export default {
     Banner,
     Promotion,
     Product,
+  },
+  data: () => ({
+    textSearch: '',
+  }),
+  methods: {
+    handleSearch(text) {
+      this.textSearch = text;
+    },
   },
 };
 </script>
