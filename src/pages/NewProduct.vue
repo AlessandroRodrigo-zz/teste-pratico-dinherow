@@ -82,7 +82,6 @@ export default {
   methods: {
     cadastrarNovoProduto() {
       this.loading = true;
-      console.log(this.newProduct);
       const file = new FileReader();
       file.readAsDataURL(this.newProduct.image);
       file.onload = () => {
