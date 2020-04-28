@@ -6,13 +6,26 @@
       class="justify-start mx-auto align-center py-5"
       style="max-width: 1500px;"
     >
-      <router-link to="/home" style="width: 50%;">
-        <img src="../assets/ansible.svg" width="8%" alt="Logo" class="mr-5" />
+      <router-link to="/home" style="width: 30%;">
+        <img src="../assets/ansible.svg" width="15%" alt="Logo" class="mr-5" />
       </router-link>
       <div class="d-flex ml-auto align-baseline">
-        <v-btn to="/new/product" class="mr-5" text color="primary"
-          >Cadastrar novo produto</v-btn
-        >
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn class="mr-5 d-flex align-center" text v-on="on">
+              Produto
+              <v-icon>mdi-chevron-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item @click="() => $router.push('/list/products')">
+              <v-list-item-title>Ver produtos cadastrados</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="() => $router.push('/new/product')">
+              <v-list-item-title>Cadastrar novo produto</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
         <router-link to="/cart">
           <v-badge
             color="primary"

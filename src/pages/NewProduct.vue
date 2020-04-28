@@ -18,25 +18,37 @@
       >
         <v-card-text>
           <v-form
-            @submit="cadastrarNovoProduto"
+            @submit.prevent="cadastrarNovoProduto"
             style="width: 50%;"
             class="mx-auto"
           >
             <v-text-field
               label="Valor"
+              type="number"
               v-model="newProduct.value"
             ></v-text-field>
             <v-text-field
               label="Nome"
+              type="text"
               v-model="newProduct.title"
             ></v-text-field>
             <v-text-field
-              label="Marca"
-              v-model="newProduct.marca"
+              label="Descrição"
+              type="text"
+              v-model="newProduct.description"
             ></v-text-field>
-            <v-file-input label="Foto" v-model="newProduct.foto"></v-file-input>
+            <v-file-input
+              label="Foto"
+              v-model="newProduct.image"
+            ></v-file-input>
             <v-card-actions class="d-flex justify-end pa-0">
-              <v-btn color="primary" type="submit" depressed>
+              <v-btn
+                :loading="loading"
+                :disabled="loading"
+                color="primary"
+                type="submit"
+                depressed
+              >
                 Cadastrar novo produto
               </v-btn>
             </v-card-actions>
@@ -55,7 +67,6 @@
 
 <script>
 import Toolbar from '../components/Toolbar.vue';
-import api from '../services/api';
 
 export default {
   components: {
@@ -66,21 +77,33 @@ export default {
     textSnackbar: '',
     colorSnackbar: 'green',
     newProduct: {},
+    loading: false,
   }),
   methods: {
     cadastrarNovoProduto() {
-      api
-        .post('https://jsonplaceholder.typicode.com/posts', this.newProduct)
-        .then(() => {
-          this.textSnackbar = 'Produto cadastrado com sucesso!';
-          this.snackbar = true;
-          this.newProduct = {};
-        })
-        .catch(() => {
-          this.textSnackbar = 'Houve um problema ao cadastrar o produto!';
-          this.colorSnackbar = 'red';
-          this.snackbar = true;
-        });
+      this.loading = true;
+      console.log(this.newProduct);
+      const file = new FileReader();
+      file.readAsDataURL(this.newProduct.image);
+      file.onload = () => {
+        this.newProduct.imageBase = file.result;
+        const newProducts = sessionStorage.getItem('new/product');
+        if (newProducts) {
+          const newProductsJson = JSON.parse(newProducts);
+          newProductsJson.push(this.newProduct);
+          sessionStorage.setItem(
+            'new/product',
+            JSON.stringify(newProductsJson)
+          );
+        } else {
+          const array = [];
+          array.push(this.newProduct);
+          sessionStorage.setItem('new/product', JSON.stringify(array));
+        }
+        this.$router.push('/list/products');
+        this.newProduct = {};
+        this.loading = false;
+      };
     },
   },
 };
