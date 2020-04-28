@@ -1,5 +1,7 @@
 # Projeto de teste - Dinherow
 
+![Print da tela de login](./src/assets/dinherow-login.png)
+
 ![Print do projeto](./src/assets/dinherow.png)
 
 ### 1 - Instalar as dependências
