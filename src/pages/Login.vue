@@ -3,11 +3,12 @@
     <v-col cols="4" class="pa-0 d-flex flex-column justify-center align-center">
       <img src="../assets/ansible.svg" width="15%" alt="" />
       <v-form @submit="handleSubmit" class="width70 mt-5">
-        <v-text-field type="email" label="E-mail" />
+        <v-text-field v-model="user.email" type="email" label="E-mail" />
         <v-text-field
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           :type="showPassword ? 'text' : 'password'"
           label="Password"
+          v-model="user.password"
           @click:append="showPassword = !showPassword"
         ></v-text-field>
         <v-btn color="primary" type="submit" large class="width100" depressed
@@ -24,6 +25,7 @@ export default {
   data() {
     return {
       showPassword: false,
+      user: {},
     };
   },
   methods: {
