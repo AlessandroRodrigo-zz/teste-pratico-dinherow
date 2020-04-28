@@ -9,9 +9,7 @@
     >
       <h1 style="width: 80%;" class="mb-5">
         {{
-          productsInCart.length > 0
-            ? 'Você não tem items cadastrados!'
-            : 'Seus items'
+          products.length > 0 ? 'Seus items' : 'Você não tem itens cadastrados!'
         }}
       </h1>
       <v-card
@@ -49,7 +47,7 @@
       </v-card>
     </v-layout>
     <v-snackbar color="green" v-model="snackbar">
-      {{ textSnackbar }}
+      Produto excluído com sucesso
       <v-btn color="white" text @click="snackbar = false">
         Fechar
       </v-btn>
@@ -58,7 +56,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import Toolbar from '../components/Toolbar.vue';
 import currency from '../services/filter';
 
@@ -66,19 +63,22 @@ export default {
   data() {
     return {
       products: [],
+      snackbar: false,
     };
   },
   components: {
     Toolbar,
   },
   computed: {
-    ...mapGetters(['productsInCart']),
     totalProductsInCart() {
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
-      if (this.products.length > 0) {
-        return this.products.map((item) => item.value * 1).reduce(reducer);
+      if (this.products) {
+        if (this.products.length > 0) {
+          return this.products.map((item) => item.value * 1).reduce(reducer);
+        }
+        return [];
       }
-      return null;
+      return [];
     },
   },
   filters: {
@@ -93,6 +93,7 @@ export default {
       this.products.splice(index, 1);
       const productsJson = JSON.stringify(this.products);
       sessionStorage.setItem('new/product', productsJson);
+      this.snackbar = true;
     },
   },
   mounted() {
